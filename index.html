@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home | Rowboats Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="background">
+  <video autoplay loop muted playsinline class="bg-video">
+    <source src="background.mp4" type="video/mp4">
+  </video>
+  <div class="grain"></div>
+  <div class="light"></div>
+</div>
+
+
+  <div class="content">
+    <h1 class="title">Rowboats Portfolio</h1>
+    <p class="version">Development Portfolio / Napoleonic Portfolio</p>
+
+    <div class="buttons">
+      <a href="development.html" class="btn">Development</a>
+      <a href="napoleonic.html" class="btn">Napoleonic</a>
+    </div>
+
+<!-- Volume control -->
+<div class="volume-container">
+  <label for="volume" class="volume-label">Volume</label>
+  <input type="range" id="volume" min="0" max="1" step="0.01" value="0.3">
+</div>
+
+
+    <div class="links">
+      <a href="https://discord.gg/8nhYKzwR">discord</a> • 
+      <a href="https://www.youtube.com/@rowboats_navy">youtube</a> • 
+      <a href="https://guns.lol/rowboat85">gunslol</a> 
+    </div>
+
+    <p class="credit">website created & developed by exoticsclub.</p>
+  </div>
+
+  <!-- Custom cursor -->
+  <div class="cursor"></div>
+
+  <!-- Background music (replace 'music.mp3' with your own file) -->
+  <audio id="bg-music" autoplay loop>
+    <source src="music.mp3" type="audio/mpeg" />
+  </audio>
+
+  <script src="script.js"></script>
+</body>
+</html>

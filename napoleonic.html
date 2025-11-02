@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Napoleonic | Rowboats Portfolio</title>
+
+  <link rel="stylesheet" href="style.css" />
+  
+  <style>
+    /* --- Override body for scrollable page --- */
+html, body {
+  height: auto !important;
+  min-height: 100% !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block !important; /* override flex */
+}
+
+
+    /* --- Background video & overlays --- */
+    .background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      overflow: hidden;
+    }
+
+    .bg-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.45);
+    }
+
+    .grain, .light {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* --- Hero section (centered) --- */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertical centering */
+  align-items: center;     /* horizontal centering */
+  text-align: center;
+  padding: 0 20px;
+  position: relative;
+  z-index: 1;
+}
+
+
+    .hero .title {
+      font-size: 3.5rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-shadow: 0 0 18px rgba(255,255,255,0.35);
+    }
+
+    .hero .version {
+      margin-top: 0.5rem;
+      color: rgba(255,255,255,0.85);
+      font-size: 1rem;
+    }
+
+    /* --- Custom cursor --- */
+    .cursor {
+      position: fixed;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: white;
+      pointer-events: none;
+      mix-blend-mode: difference;
+      transform: translate(-50%, -50%);
+      transition: transform .08s linear;
+      z-index: 9999;
+    }
+
+    /* --- Top-left controls --- */
+    .top-left {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 20;
+    }
+
+    .top-left .btn,
+    .top-left .volume-container {
+      width: 180px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="background">
+  <video autoplay loop muted playsinline class="bg-video">
+    <source src="background.mp4" type="video/mp4">
+  </video>
+  <div class="grain"></div>
+  <div class="light"></div>
+</div>
+
+  <!-- Fixed top-left controls -->
+  <div class="top-left">
+    <a href="index.html" class="btn">Back to Dashboard</a>
+    <div class="volume-container">
+      <label for="volume" class="volume-label">Volume</label>
+      <input type="range" id="volume" min="0" max="1" step="0.01" value="0.3" />
+    </div>
+  </div>
+
+  <!-- HERO (centered title + subtext) -->
+<header class="hero">
+  <div class="blur-box">
+    <h1 class="title">Napoleonic</h1>
+    <p class="version">My enemies are many, My equals are none.</p>
+    <p class="extra-text">My work in the Napoleonic Wars!</p>
+    <p class="extra-text" style="margin-top: 1rem;">Former NW French CO!</p>
+    <p class="extra-text">Former NW Warsaw General Staff</p>
+    <p class="extra-text">Former NW British Army Officer</p>
+    <p class="extra-text">Former nation leader of France</p>
+    <p class="extra-text">Former nation leader of VAM Austria</p>
+    <p class="extra-text">NW Connecticut Commander</p>
+  </div>
+</header>
+
+  <!-- Custom cursor -->
+  <div class="cursor" aria-hidden="true"></div>
+
+  <!-- Background audio -->
+  <audio id="bg-music" autoplay loop>
+    <source src="music.mp3" type="audio/mpeg" />
+  </audio>
+
+  <script>
+    const cursor = document.querySelector('.cursor');
+    const bgMusic = document.getElementById("bg-music");
+    const volumeSlider = document.getElementById("volume");
+
+    // Move custom cursor
+    document.addEventListener('mousemove', e => {
+      cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+    });
+
+    // Start music on first click if paused
+    document.addEventListener("click", () => {
+      if (bgMusic.paused) {
+        bgMusic.volume = volumeSlider.value;
+        bgMusic.play().catch(err => console.log("Playback error:", err));
+      }
+    });
+
+    // Adjust volume live
+    volumeSlider.addEventListener("input", () => {
+      bgMusic.volume = volumeSlider.value;
+    });
+  </script>
+
+</body>
+</html>

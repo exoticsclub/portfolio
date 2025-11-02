@@ -1,0 +1,321 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  cursor: none;
+}
+
+body {
+  height: 100vh;
+  overflow: hidden;
+  background-color: #000;
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* --- Background effects --- */
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  filter: brightness(0.6); /* darkens it slightly so text stays readable */
+}
+
+
+/* --- Content --- */
+.content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.title {
+  font-size: 4rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-shadow: 0 0 20px rgba(255,255,255,0.5);
+}
+
+.version {
+  margin: 0.5rem 0 2rem 0;
+  color: rgba(255,255,255,0.7);
+  font-size: 0.9rem;
+}
+
+.description {
+  margin: 0.5rem 0 2rem 0;
+  color: rgba(255,255,255);
+  text-shadow: 0 0 20px rgba(255,255,255,0.5);
+  font-size: 2rem;
+}
+
+.scrolltext {
+  margin: 0.5rem 0 2rem 0;
+  color: rgba(255,255,255);
+  text-shadow: 0 0 20px rgba(255,255,255,0.5);
+  font-size: 1.5rem;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 1rem 2rem;
+  border: 1px solid white;
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background-color: white;
+  color: black;
+}
+
+.links {
+  font-size: 0.90rem;
+  opacity: 0.8;
+}
+
+.links a {
+  color: white;
+  text-decoration: none;
+}
+
+.links a:hover {
+  text-decoration: underline;
+}
+
+.credit {
+  margin-top: 1.5rem;
+  font-size: 0.75rem;
+  opacity: 0.6;
+}
+
+/* --- Custom Cursor --- */
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background-color: white;
+  pointer-events: none;
+  mix-blend-mode: difference;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease-out;
+  z-index: 999;
+}
+
+.volume-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+  color: white;
+  font-family: inherit;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.volume-label {
+  margin-bottom: 10px;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 200px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 0 10px white;
+  transition: 0.3s;
+}
+
+input[type="range"]:hover::-webkit-slider-thumb {
+  box-shadow: 0 0 20px white;
+}
+
+input[type="range"]:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* --- Top-left controls --- */
+.top-left-controls {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  z-index: 10;
+}
+
+/* Make the back button and volume control visually match */
+.back-btn {
+  width: 200px;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+/* Adjust volume slider for top-left layout */
+.volume-container.small {
+  width: 200px;
+}
+
+.volume-container.small label {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+/* Enable scroll for this page */
+.scroll-page {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Fade-in effects */
+.fade-in,
+.fade-in-delay {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 1.2s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-in-delay.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.3s;
+}
+
+/* Scrollable layout */
+.scrollable-content {
+  min-height: 250vh;
+  padding-top: 120px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* Project section */
+.projects {
+  margin-top: 3rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1rem;
+  animation: fadeUp 1s ease forwards;
+}
+
+/* Fixed top-left controls */
+.top-left-controls {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  z-index: 10;
+}
+
+.back-btn {
+  width: 200px;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.volume-container.small {
+  width: 200px;
+}
+
+/* Subtle scroll fade animation */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Floating/pulsing animation */
+@keyframes floatPulse {
+  0% {
+    transform: translateY(0px) scale(1);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+  }
+  50% {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+  }
+  100% {
+    transform: translateY(0px) scale(1);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+  }
+}
+
+.blur-box {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+  border-radius: 20px;
+  padding: 50px 40px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.575);
+  max-width: 600px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+
+  /* Animation */
+  animation: floatPulse 6s ease-in-out infinite;
+}
